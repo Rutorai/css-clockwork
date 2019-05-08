@@ -32,13 +32,8 @@ body {
         inset .5em .5em 1em rgba(0, 0, 0, .1);
 }
 
-/* pin */
-.clock::before {
-    --width: .02em;
-    --height: .4em;
-    /* 37 minutes */
-    --angle: calc(1turn / 60 * 37 - .5turn);
-
+/* pins */
+.clock::before, .clock::after {
     background: currentColor;
     border-bottom-left-radius: 100% 10%;
     border-bottom-right-radius: 100% 10%;
@@ -53,4 +48,23 @@ body {
 
     transform: rotate(var(--angle));
     transform-origin: top center;
+}
+
+/* hour pin */
+.clock::before {
+    --width: .035em;
+    --height: .2em;
+    --angle: calc(1turn / 12 * var(--hour) - .5turn);
+}
+
+/* minute pin */
+.clock::after {
+    --width: .02em;
+    --height: .4em;
+    --angle: calc(1turn / 60 * var(--minute) - .5turn);
+}
+
+:root {
+    --hour: 18;
+    --minute: 07;
 }
