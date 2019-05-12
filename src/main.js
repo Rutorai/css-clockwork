@@ -1,12 +1,12 @@
-// Set --hour, --minute and --second
-const bodyStyle = document.body.style;
-function setHourMinuteSecond() {
+const currentTime = () => {
     const now = new Date();
     const h = now.getHours();
     const min = now.getMinutes();
     const sec = now.getSeconds();
-    bodyStyle.setProperty("--hour", "" + h);
-    bodyStyle.setProperty("--minute", "" + min);
-    bodyStyle.setProperty("--second", "" + sec);
-}
-setInterval(setHourMinuteSecond, 1000 /* 1s */);
+    return { h, min, sec };
+};
+
+const { h, min, sec } = currentTime();
+
+const delay = 60 * (min + 60 * h) + sec;
+document.body.style.setProperty("--delay", "" + delay);
